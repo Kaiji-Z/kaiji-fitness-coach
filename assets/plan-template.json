@@ -1,0 +1,298 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "AI 健身私教训练计划模板 - 用于导入训练 App",
+  
+  "planName": "训练计划名称",
+  "version": "1.0",
+  "created": "2026-03-20",
+  "author": "AI Fitness Coach",
+  
+  "target": "hypertrophy",
+  "targetOptions": ["strength", "hypertrophy", "endurance", "weight_loss"],
+  
+  "frequency": "3 days/week",
+  "equipment": ["dumbbell", "bench"],
+  "experience": "intermediate",
+  "experienceOptions": ["beginner", "intermediate", "expert"],
+  
+  "notes": "计划说明和注意事项",
+  
+  "days": [
+    {
+      "name": "PUSH",
+      "description": "胸部、肩部、三头肌",
+      "order": 1,
+      "exercises": [
+        {
+          "id": "Incline_Dumbbell_Press",
+          "name": "上斜哑铃卧推",
+          "nameEn": "Incline Dumbbell Press",
+          "muscle": "chest",
+          "mechanic": "compound",
+          "sets": 4,
+          "reps": "8-12",
+          "rest": 90,
+          "weight": null,
+          "notes": "上胸优先，控制下放速度",
+          "tempo": "3010",
+          "tempoDesc": "下放3秒-底部不停-上推1秒-顶峰不停"
+        },
+        {
+          "id": "Flat_Dumbbell_Press",
+          "name": "平板哑铃卧推",
+          "nameEn": "Flat Dumbbell Press",
+          "muscle": "chest",
+          "mechanic": "compound",
+          "sets": 3,
+          "reps": "8-12",
+          "rest": 90,
+          "weight": null,
+          "notes": "整体胸肌发展",
+          "tempo": "2010",
+          "tempoDesc": "下放2秒-底部不停-上推1秒-顶峰不停"
+        },
+        {
+          "id": "Dumbbell_Flyes",
+          "name": "哑铃飞鸟",
+          "nameEn": "Dumbbell Flyes",
+          "muscle": "chest",
+          "mechanic": "isolation",
+          "sets": 3,
+          "reps": "10-15",
+          "rest": 60,
+          "weight": null,
+          "notes": "感受胸肌拉伸，不要过度伸展",
+          "tempo": "3010",
+          "tempoDesc": "下放3秒-底部不停-上夹1秒-顶峰挤压"
+        },
+        {
+          "id": "Dumbbell_Shoulder_Press",
+          "name": "哑铃推举",
+          "nameEn": "Dumbbell Shoulder Press",
+          "muscle": "shoulders",
+          "mechanic": "compound",
+          "sets": 3,
+          "reps": "8-12",
+          "rest": 90,
+          "weight": null,
+          "notes": "坐姿更稳定",
+          "tempo": "2010"
+        },
+        {
+          "id": "Dumbbell_Lateral_Raise",
+          "name": "哑铃侧平举",
+          "nameEn": "Dumbbell Lateral Raise",
+          "muscle": "shoulders",
+          "mechanic": "isolation",
+          "sets": 3,
+          "reps": "12-15",
+          "rest": 60,
+          "weight": null,
+          "notes": "中束为主，不要耸肩",
+          "tempo": "2010"
+        },
+        {
+          "id": "Dumbbell_Triceps_Extension",
+          "name": "哑铃三头臂屈伸",
+          "nameEn": "Dumbbell Triceps Extension",
+          "muscle": "triceps",
+          "mechanic": "isolation",
+          "sets": 3,
+          "reps": "10-15",
+          "rest": 60,
+          "weight": null,
+          "notes": "颈后或过头顶",
+          "tempo": "2010"
+        }
+      ]
+    },
+    {
+      "name": "PULL",
+      "description": "背部、后束、二头肌",
+      "order": 2,
+      "exercises": [
+        {
+          "id": "One_Arm_Dumbbell_Row",
+          "name": "单臂哑铃划船",
+          "nameEn": "One Arm Dumbbell Row",
+          "muscle": "lats",
+          "mechanic": "compound",
+          "sets": 4,
+          "reps": "8-12",
+          "rest": 90,
+          "weight": null,
+          "notes": "背厚度，手肘贴身",
+          "tempo": "2010"
+        },
+        {
+          "id": "Two_Arm_Dumbbell_Row",
+          "name": "双臂哑铃划船",
+          "nameEn": "Two Arm Dumbbell Row",
+          "muscle": "lats",
+          "mechanic": "compound",
+          "sets": 3,
+          "reps": "8-12",
+          "rest": 90,
+          "weight": null,
+          "notes": "俯身划船，背部平行地面",
+          "tempo": "2010"
+        },
+        {
+          "id": "Dumbbell_Pullover",
+          "name": "哑铃仰卧上拉",
+          "nameEn": "Dumbbell Pullover",
+          "muscle": "lats",
+          "mechanic": "compound",
+          "sets": 3,
+          "reps": "10-12",
+          "rest": 60,
+          "weight": null,
+          "notes": "背宽度和胸拉伸",
+          "tempo": "3010"
+        },
+        {
+          "id": "Rear_Delt_Fly",
+          "name": "后束飞鸟",
+          "nameEn": "Rear Delt Fly",
+          "muscle": "shoulders",
+          "mechanic": "isolation",
+          "sets": 3,
+          "reps": "12-15",
+          "rest": 60,
+          "weight": null,
+          "notes": "俯身，感受后束",
+          "tempo": "2010"
+        },
+        {
+          "id": "Dumbbell_Biceps_Curl",
+          "name": "哑铃二头弯举",
+          "nameEn": "Dumbbell Biceps Curl",
+          "muscle": "biceps",
+          "mechanic": "isolation",
+          "sets": 4,
+          "reps": "10-15",
+          "rest": 60,
+          "weight": null,
+          "notes": "顶峰挤压，全程控制",
+          "tempo": "2010"
+        }
+      ]
+    },
+    {
+      "name": "LEGS",
+      "description": "股四头肌、腘绳肌、臀部、小腿、核心",
+      "order": 3,
+      "exercises": [
+        {
+          "id": "Dumbbell_Squat",
+          "name": "哑铃深蹲",
+          "nameEn": "Dumbbell Squat",
+          "muscle": "quadriceps",
+          "mechanic": "compound",
+          "sets": 4,
+          "reps": "8-12",
+          "rest": 120,
+          "weight": null,
+          "notes": "核心收紧，膝盖朝脚尖方向",
+          "tempo": "2010"
+        },
+        {
+          "id": "Dumbbell_Lunge",
+          "name": "哑铃箭步蹲",
+          "nameEn": "Dumbbell Lunge",
+          "muscle": "quadriceps",
+          "mechanic": "compound",
+          "sets": 3,
+          "reps": "10-12",
+          "rest": 90,
+          "weight": null,
+          "notes": "每条腿各做，保持平衡",
+          "tempo": "2010"
+        },
+        {
+          "id": "Romanian_Deadlift",
+          "name": "罗马尼亚硬拉",
+          "nameEn": "Romanian Deadlift",
+          "muscle": "hamstrings",
+          "mechanic": "compound",
+          "sets": 3,
+          "reps": "8-12",
+          "rest": 90,
+          "weight": null,
+          "notes": "后链拉伸，背部平直",
+          "tempo": "3010"
+        },
+        {
+          "id": "Glute_Bridge",
+          "name": "臀桥",
+          "nameEn": "Glute Bridge",
+          "muscle": "glutes",
+          "mechanic": "isolation",
+          "sets": 3,
+          "reps": "12-15",
+          "rest": 60,
+          "weight": null,
+          "notes": "顶峰挤压臀部",
+          "tempo": "2010"
+        },
+        {
+          "id": "Dumbbell_Calf_Raise",
+          "name": "哑铃提踵",
+          "nameEn": "Dumbbell Calf Raise",
+          "muscle": "calves",
+          "mechanic": "isolation",
+          "sets": 3,
+          "reps": "15-20",
+          "rest": 45,
+          "weight": null,
+          "notes": "顶峰停顿1秒",
+          "tempo": "1011"
+        },
+        {
+          "id": "Plank",
+          "name": "平板支撑",
+          "nameEn": "Plank",
+          "muscle": "abdominals",
+          "mechanic": "static",
+          "sets": 3,
+          "reps": "30-60s",
+          "rest": 60,
+          "weight": null,
+          "notes": "核心收紧，身体一条线",
+          "tempo": null
+        }
+      ]
+    }
+  ],
+  
+  "warmup": {
+    "duration": "5-10分钟",
+    "exercises": [
+      "动态拉伸（手臂绕环、腿部摆动）",
+      "轻重量预热组（正式动作的50%重量）"
+    ]
+  },
+  
+  "cooldown": {
+    "duration": "5-10分钟",
+    "exercises": [
+      "静态拉伸目标肌群（每个动作30秒）",
+      "泡沫轴放松（如果有）"
+    ]
+  },
+  
+  "progression": {
+    "method": "渐进超负荷",
+    "rules": [
+      "连续2周完成目标次数上限 → 增加重量2.5-5%",
+      "无法完成 → 保持重量，先增加次数",
+      "动作变形 → 降低重量，专注技术"
+    ]
+  },
+  
+  "schedule": {
+    "suggested": ["周一", "周三", "周五"],
+    "restDays": ["周二", "周四", "周六", "周日"],
+    "note": "训练日之间至少休息1天"
+  }
+}
