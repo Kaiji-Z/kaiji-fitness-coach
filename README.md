@@ -116,7 +116,29 @@ kaiji-fitness-coach/
 ### 第三阶段：动作教学
 从数据库调取专业资料，翻译为中文，配合示范图片讲解。
 
-### 第四阶段：训练进化
+### 第四阶段：导出到 Workout Timer App 📱
+
+训练计划支持 JSON 格式输出，可直接导入 [**Workout Timer**](https://github.com/Kaiji-Z/workout-timer) App：
+
+```bash
+# 1. 让教练生成 JSON 格式计划
+"帮我生成一个 PPL 计划，要 JSON 格式的"
+
+# 2. 在 Workout Timer App 中导入 JSON 文件
+# 3. 开始训练！App 自动计时、记录、统计
+```
+
+**完整的训练闭环：**
+```
+AI 教练生成计划 → 导入 Workout Timer → 训练计时记录
+        ↑                                    ↓
+        ← 导出训练数据 → AI 教练分析优化 ←←←
+```
+
+> 💡 **Workout Timer** 是一款开源健身计时器 App，内置 870+ 动作库、训练计划管理、记录统计等功能。
+> 数据源与本技能相同（free-exercise-db），配合使用体验拉满！
+
+### 第五阶段：训练进化
 - 连续 2 周完成目标次数 → 加重量
 - 进入平台期 → 调整计划
 - 弱点肌群 → 额外强化
