@@ -1,4 +1,4 @@
----
+﻿---
 name: kaiji-fitness-coach
 description: |
   全流程 AI 健身私教技能。提供完整的健身教练体验：新用户信息收集 → 个性化训练计划生成 → 训练进化与调整 → 动作教学与指导。
@@ -86,6 +86,11 @@ python scripts/query_exercises.py --muscle chest --equipment dumbbell
 
 ## 第二阶段：生成训练计划
 
+**⚠️ 强制前置步骤**：生成计划前，必须先读取 `memory/topics/training-plan-rules.md`，按其中的5步流程执行，特别是：
+- 从 `free-exercise-db` 数据库选动作，使用 `e.name` 标准名称
+- 生成后逐一校验动作名与数据库匹配
+- 自动应用用户私人约束（无单杠、手腕、不练耸肩等）
+
 **参考**：[references/plan-design.md](references/plan-design.md)
 
 ### 查询可用动作
@@ -102,6 +107,35 @@ python scripts/query_exercises.py --force push --equipment dumbbell --level inte
 # 查询单个动作详情
 python scripts/query_exercises.py --id "Incline_Dumbbell_Press"
 ```
+
+### 数据来源识别
+
+生成计划前，先判断用户数据来源：
+
+**来源A：来自Workout Timer App**
+- 数据包含「训练数据报告」「肌群容量分布」「恢复状态」等App专属指标
+- 处理方式：读取 `references/workout-timer-integration.md`，按App数据逻辑分析
+- 输出：Markdown + JSON（方便导入App）
+
+**来源B：用户口头描述/手动提供**
+- 用户通过对话告知训练情况、目标、偏好
+- 处理方式：按下方标准流程生成
+- 输出：Markdown格式即可
+
+### 训练日动态排序
+
+**核心原则**：训练日顺序不固定，根据肌肉恢复状态动态调整。
+
+规则：
+1. 优先安排**距上次训练间隔最久**的肌群
+2. 确保同一肌群至少休息 48 小时
+3. 如果用户有偏好（如固定周几练），在满足恢复的前提下尽量配合
+4. 适用于所有分化模式（PPL、上下分化、全身训练等）
+
+示例（PPL 3天/周）：
+- 上周训练顺序：腿→推→拉
+- 本周恢复最久的是拉（背），所以第一个训练日排拉日
+- 本周顺序：拉→腿→推
 
 ### 计划模板选择
 
@@ -152,28 +186,18 @@ python scripts/query_exercises.py --id "Incline_Dumbbell_Press"
 - 用户明确要求
 - 用户已下载「撸铁计时器」App 并需要导入
 
-JSON 格式用于导入训练 App：
+**JSON 格式以 `assets/plan-template.json` 为唯一标准模板**，字段结构说明：
 
-```json
-{
-  "planName": "PPL - 推拉腿",
-  "created": "2026-03-20",
-  "days": [
-    {
-      "name": "PUSH",
-      "exercises": [
-        {
-          "id": "Incline_Dumbbell_Press",
-          "name": "上斜哑铃卧推",
-          "sets": 4,
-          "reps": "8-12",
-          "rest": 90
-        }
-      ]
-    }
-  ]
-}
-```
+| 层级 | 字段 | 说明 |
+|------|------|------|
+| 顶层 | `planName`, `version`, `created`, `target`, `frequency`, `equipment`, `experience` | 计划元信息 |
+| `days[]` | `name`, `description`, `order` | 训练日（name=PUSH/PULL/LEGS等，order=排序序号） |
+| `exercises[]` | `id`, `name`, `nameEn`, `muscle`, `mechanic`, `sets`, `reps`, `rest`, `weight`, `notes`, `tempo` | 动作详情 |
+
+关键规则：
+- `id` 必须与 free-exercise-db 的动作 ID 匹配（下划线分隔，如 `Incline_Dumbbell_Press`）
+- `name` 为中文名，`nameEn` 为英文标准名
+- 不要使用 `exerciseName`、`dayOfWeek`、`targetMuscles` 等非标准字段
 
 完整模板参见 [assets/plan-template.json](assets/plan-template.json)
 
@@ -264,8 +288,8 @@ JSON 格式用于导入训练 App：
 
 | 系统 | 路径 |
 |------|------|
-| Linux/macOS | `~/.openclaw/skills/kaiji-fitness-coach/free-exercise-db/` |
-| Windows | `C:\Users\<用户名>\.openclaw\skills\kaiji-fitness-coach\free-exercise-db\` |
+| Linux/macOS | `~/.kaijibot/workspace-jiroubao/skills/kaiji-fitness-coach/free-exercise-db/` |
+| Windows | `C:\Users\<用户名>\.kaijibot\workspace-jiroubao\skills\kaiji-fitness-coach\free-exercise-db\` |
 
 ## 常见问题
 
