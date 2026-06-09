@@ -1,0 +1,4 @@
+free-exercise-db/
+temp/
+*.pyc
+__pycache__/
