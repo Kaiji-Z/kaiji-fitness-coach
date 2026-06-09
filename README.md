@@ -1,31 +1,34 @@
 # kaiji-fitness-coach
 
-鍩轰簬 [free-exercise-db](https://gitee.com/kaiji1126/free-exercise-db)锛?00+ 鍋ヨ韩鍔ㄤ綔锛夌殑 AI 鍋ヨ韩鏁欑粌鐭ヨ瘑浣撶郴銆?
-## 瀹夎
+基于 [free-exercise-db](https://gitee.com/kaiji1126/free-exercise-db)（800+ 动作）的 AI 健身教练知识体系。
 
-1. 瀹夎鏁版嵁搴擄細`python scripts/setup_db.py`
-2. 楠岃瘉锛歚python scripts/query_exercises.py --check-db`
+覆盖训练计划、动作教学、数据分析、营养指导、进阶周期化全流程。
 
-## 瀛?Skill
+## 安装
 
-| 瀛?Skill | 鐢ㄩ€?|
-|----------|------|
-| onboarding | 鏂扮敤鎴风敾鍍忔敹闆?|
-| plan-generator | 璁粌璁″垝鐢熸垚 |
-| exercise-teaching | 鍔ㄤ綔鏁欏涓庣ず鑼?|
-| data-analyst | 璁粌鏁版嵁鍒嗘瀽 |
-| progression | 杩涢樁涓庡懆鏈熷寲 |
-| nutrition-advisor | 钀ュ吇鎸囧 |
+1. 安装数据库：`python scripts/setup_db.py`
+2. 验证：`python scripts/query_exercises.py --check-db`
 
-## 鐩綍缁撴瀯
+## 目录结构
 
 ```
 kaiji-fitness-coach/
-鈹溾攢鈹€ SKILL.md              # 涓?Skill
-鈹溾攢鈹€ skills/               # 瀛?Skill
-鈹溾攢鈹€ references/           # 鍙傝€冭祫鏂?鈹溾攢鈹€ assets/               # JSON 妯℃澘
-鈹溾攢鈹€ scripts/              # 鏁版嵁搴撹剼鏈?鈹溾攢鈹€ free-exercise-db/     # 鏁版嵁搴擄紙涓嶆彁浜わ級
-鈹斺攢鈹€ .gitignore
+├── SKILL.md              # 主 Skill（操作规范 + Reference 路由）
+├── references/           # 按需加载的参考资料
+│   ├── onboarding.md     # 用户画像收集
+│   ├── plan-generator.md # 训练计划生成
+│   ├── exercise-teaching.md # 动作教学
+│   ├── data-analyst.md   # 训练数据分析
+│   ├── progression.md    # 进阶与周期化
+│   ├── nutrition-advisor.md # 营养指导
+│   ├── workout-timer-integration.md # App 数据对接
+│   ├── plan-design-principles.md # 计划设计原则
+│   ├── muscle-reference.md # 肌群对照与 MEV 基准
+│   └── exercise-db-schema.md # 数据库字段文档
+├── assets/               # JSON 模板
+├── scripts/              # 数据库脚本
+├── free-exercise-db/     # 数据库（不提交）
+└── .gitignore
 ```
 
 ## License
