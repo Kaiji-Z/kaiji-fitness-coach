@@ -185,26 +185,29 @@ python scripts/query_exercises.py --id "Incline_Dumbbell_Press"
 仅在以下情况提供 JSON：
 - 用户明确要求
 - 用户已下载「撸铁计时器」App 并需要导入
+- App 导出的数据报告中包含 JSON 输出格式要求时
 
-**JSON 格式以 `assets/plan-template.json` 为唯一标准模板**，字段结构说明：
+**JSON 格式以 `assets/plan-template.json` 为唯一标准模板**，与 App 导出格式一致：
 
 | 层级 | 字段 | 说明 |
 |------|------|------|
-| 顶层 | `planName`, `version`, `created`, `target`, `frequency`, `equipment`, `experience` | 计划元信息 |
-| `days[]` | `name`, `description`, `order` | 训练日（name=PUSH/PULL/LEGS等，order=排序序号） |
-| `exercises[]` | `id`, `name`, `nameEn`, `muscle`, `mechanic`, `sets`, `reps`, `rest`, `weight`, `notes`, `tempo` | 动作详情 |
+| 顶层 | `name` | 计划名称 |
+| `days[]` | `dayOfWeek`, `targetMuscles`, `exercises` | 训练日 |
+| `exercises[]` | `exerciseName`, `targetSets` | 动作详情 |
 
 关键规则：
-- `id` 必须与 free-exercise-db 的动作 ID 匹配（下划线分隔，如 `Incline_Dumbbell_Press`）
-- `name` 为中文名，`nameEn` 为英文标准名
-- 不要使用 `exerciseName`、`dayOfWeek`、`targetMuscles` 等非标准字段
+- `exerciseName` 使用 free-exercise-db 标准英文名
+- `targetMuscles` 为英文肌群名数组
+- `dayOfWeek` 对应星期几（1=周一, 3=周三, 5=周五）
+- `targetSets` 为目标组数
+- **只输出纯 JSON，不加 markdown 包裹或额外解释**
 
 完整模板参见 [assets/plan-template.json](assets/plan-template.json)
 
 **输出格式选择指南**：
 - 聊天直接看 → Markdown 表格
 - 发文档/笔记 → Markdown 或纯文本
-- 导入 App → JSON（仅当用户有撸铁计时器 App）
+- App 数据报告要求 JSON → 只输出纯 JSON
 
 ## 第三阶段：动作教学
 

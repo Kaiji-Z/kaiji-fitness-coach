@@ -75,28 +75,17 @@ Workout Timer 是一款健身计时+训练记录App，支持Android/iOS。部分
 
 ## JSON导入格式（App专用）
 
-**以 `assets/plan-template.json` 为唯一标准**，核心结构：
+**以 `assets/plan-template.json` 为唯一标准**，与 App 导出的 prompt 格式一致：
 
 ```json
 {
-  "planName": "计划名称",
-  "target": "hypertrophy",
+  "name": "计划名称",
   "days": [
     {
-      "name": "PUSH",
-      "description": "胸部、肩部、三头肌",
-      "order": 1,
+      "dayOfWeek": 1,
+      "targetMuscles": ["chest", "shoulders", "triceps"],
       "exercises": [
-        {
-          "id": "Incline_Dumbbell_Press",
-          "name": "上斜哑铃卧推",
-          "nameEn": "Incline Dumbbell Press",
-          "muscle": "chest",
-          "mechanic": "compound",
-          "sets": 4,
-          "reps": "8-12",
-          "rest": 90
-        }
+        {"exerciseName": "Incline Dumbbell Press", "targetSets": 4}
       ]
     }
   ]
@@ -104,11 +93,13 @@ Workout Timer 是一款健身计时+训练记录App，支持Android/iOS。部分
 ```
 
 字段说明：
-- `id`: 必须与 free-exercise-db 的动作 ID 匹配（下划线分隔格式）
-- `name`: 中文名，`nameEn`: 英文标准名
-- `sets`: 3-5 组，`reps`: 次数范围字符串
-- `order`: 训练日排序序号（按动态恢复排序）
-- 完整字段说明见 `assets/plan-template.json`
+- `name`: 计划名称（如 "Week 13 — 增肌期"）
+- `days[]`: 训练日数组
+  - `dayOfWeek`: 星期几（1=周一, 3=周三, 5=周五）
+  - `targetMuscles[]`: 该日目标肌群（英文标准名数组）
+  - `exercises[]`: 动作列表
+    - `exerciseName`: 动作英文名（与 free-exercise-db 一致）
+    - `targetSets`: 目标组数
 
 ## 没有App的用户
 
